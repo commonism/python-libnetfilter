@@ -1,0 +1,8 @@
+*.vpj
+*.vpw
+*.vpwhistu
+*.vtg
+
+build/
+*.pyc
+*~
