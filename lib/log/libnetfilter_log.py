@@ -1,9 +1,10 @@
 import ctypes
+import ctypes.util
 import socket
 
 from libnetfilter.netlink.libnfnetlink import _LP_nfnl_handle, _LP_timeval
 
-libnflog = None
+libnflog = ctypes.CDLL(ctypes.util.find_library("netfilter_log"))
 
 class nflogError(OSError): 
 	pass
@@ -37,8 +38,6 @@ class _nflog_data(ctypes.Structure):
 
 _LP_nflog_data = ctypes.POINTER(_nflog_data)
 
-
-libnflog = ctypes.CDLL('libnetfilter_log.so.1', use_errno=True)
 
 libnflog.nflog_unbind_pf.errcheck = _chk_int
 libnflog.nflog_bind_pf.errcheck = _chk_int

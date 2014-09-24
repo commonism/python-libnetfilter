@@ -3,7 +3,8 @@ import ctypes.util
 
 from libnetfilter.netlink.libnfnetlink import _LP_nfnl_handle, _LP_timeval
 
-libnfq = ctypes.cdll.LoadLibrary(ctypes.util.find_library('netfilter_queue'))
+libnfq = ctypes.CDLL(ctypes.util.find_library("netfilter_queue"))
+
 
 class _nfq_handle(ctypes.Structure):
 	pass

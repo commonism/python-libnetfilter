@@ -3,6 +3,8 @@ import ctypes.util
 
 from libnetfilter.netlink.libnfnetlink import _LP_nfnl_handle, _LP_nlmsghdr
 
+libnfct = ctypes.CDLL(ctypes.util.find_library('netfilter_conntrack'))
+
 # conntrack
 CONNTRACK = 1
 EXPECT = 2
@@ -208,8 +210,6 @@ class _nf_conntrack(ctypes.Structure):
 
 _LP_nf_conntrack = ctypes.POINTER(_nf_conntrack)
 
-libnfct = ctypes.CDLL('libnetfilter_conntrack.so.3')
-print(libnfct)
 # struct nfct_handle *nfct_open (u_int8_t subsys_id, unsigned subscriptions)
 libnfct.nfct_open.restype =  _LP_nfct_handle
 libnfct.nfct_open.argtypes = [ctypes.c_uint8, ctypes.c_uint]

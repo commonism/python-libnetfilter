@@ -1,4 +1,7 @@
 import ctypes
+import ctypes.util
+
+libnfnl = ctypes.CDLL(ctypes.util.find_library("nfnetlink"))
 
 class timeval(ctypes.Structure):
 	_fields_ = [('tv_sec', ctypes.c_long),
