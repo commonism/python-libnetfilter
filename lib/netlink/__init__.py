@@ -1,6 +1,7 @@
 import ctypes
+import socket
 
-from .libnfnetlink import _LP_nfnl_handle, _LP_nlif_handle, libnfnl
+from .libnfnetlink import _LP_nfnl_handle, _LP_nlif_handle, libnfnl, iphdr, icmphdr, tcphdr, udphdr
 
 __all__ = ['nfnl_handle','nlif_handle']
 
@@ -39,3 +40,51 @@ class nlif_handle(_LP_nlif_handle):
 			return None
 		return str(buf.value)
 
+
+def nf_log(pkt, iif, oif):
+	# log_packet_common
+	r = "IN={} OUT={} ".format(iif,oif)
+
+	# FIXME
+	# PHYSIN=
+	# PHYSOUT=
+
+	# dump_ipv4_mac_header
+	# FIXME
+	# MACSRC=%pM MACDST=%pM MACPROTO=%04x
+	# MAC=
+
+	# dump_ipv4_packet
+	ih = iphdr.from_buffer(pkt)
+	r += "SRC={i.src} DST={i.dst} LEN={i.length} TOS=0x{i.tos:02x} PREC=0x{i.prec:02x} TTL={i.ttl} ID={i.id} ".format(i=ih)
+
+	# FIXME
+	# "CE DF MF "
+
+	if ih.protocol == socket.IPPROTO_TCP:
+		th = tcphdr.from_buffer(pkt, ih.off)
+		r += "PROTO=TCP "
+		r += "SPT={th.src} DPT={th.dst} ".format(th=th)
+		# FIXME
+		# SEQ=%u ACK=%u
+		# WINDOW=%u
+		# RES=0x%02x
+		# CWR ECE URG ACK PSH RST SYN FIN
+		# URGP=%u
+		# OPT (...)
+	elif ih.protocol == socket.IPPROTO_UDP:
+		uh = udphdr.from_buffer(pkt, ih.off)
+		r += "PROTO=UDP "
+		r+= "SPT={uh.src} DPT={uh.dst} LEN={uh.length} ".format(uh=uh)
+	elif ih.protocol == socket.IPPROTO_ICMP:
+		xh = icmphdr.from_buffer(pkt, ih.off)
+		r += "PROTO=ICMP "
+		r += "TYPE={ih.type} CODE={ih.code} ".format(ih=xh)
+		# FIXME
+		# ...
+	elif ih.protocol == socket.IPPROTO_AH:
+		r += "PROTO=AH "
+	elif ih.protocol == socket.IPPROTO_ESP:
+		r += "PROTO=ESP "
+
+	return r
