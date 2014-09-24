@@ -136,11 +136,11 @@ class nflog_data(_LP_nflog_data):
 	@property
 	def payload(self):
 		# int nflog_get_payload (struct nflog_data *nfad, char **data)
-		buf = ctypes.c_void_p()
+		buf = ctypes.c_char_p()
 		r = libnflog.nflog_get_payload(self, ctypes.byref(buf))
 		if r <= 0:
 			return None
-		return (ctypes.c_char_p * r).from_address(buf.value)
+		return (ctypes.c_char_p * r).from_address(ctypes.cast(buf, ctypes.c_void_p).value)
 
 	@property
 	def prefix(self):

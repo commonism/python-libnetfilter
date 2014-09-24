@@ -146,7 +146,7 @@ libnflog.nflog_get_nfmark.restype = ctypes.c_uint32
 libnflog.nflog_get_nfmark.argtypes = [_LP_nflog_data]
 
 # int 	nflog_get_timestamp (struct nflog_data *nfad, struct timeval *tv)
-libnflog.nflog_get_timestamp.restype = ctypes.c_int32
+libnflog.nflog_get_timestamp.restype = ctypes.c_int
 libnflog.nflog_get_timestamp.argtypes = [_LP_nflog_data, _LP_timeval]
 
 # u_int32_t 	nflog_get_indev (struct nflog_data *nfad)
@@ -170,27 +170,27 @@ libnflog.nflog_get_packet_hw.restype = ctypes.c_void_p
 libnflog.nflog_get_packet_hw.argtypes = [_LP_nflog_data]
 
 # int nflog_get_payload (struct nflog_data *nfad, char **data)
-libnflog.nflog_get_physoutdev.restype = ctypes.c_int32
-libnflog.nflog_get_physoutdev.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.POINTER(ctypes.c_char))]
+libnflog.nflog_get_payload.restype = ctypes.c_int
+libnflog.nflog_get_payload.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.c_char_p)]
 
 # char *nflog_get_prefix (struct nflog_data *nfad)
 libnflog.nflog_get_prefix.restype = ctypes.c_char_p
 libnflog.nflog_get_prefix.argtypes = [_LP_nflog_data]
 
 # int nflog_get_uid (struct nflog_data *nfad, u_int32_t *uid)
-libnflog.nflog_get_uid.restype = ctypes.c_int32
+libnflog.nflog_get_uid.restype = ctypes.c_int
 libnflog.nflog_get_uid.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.c_uint32)]
 
 # int nflog_get_gid (struct nflog_data *nfad, u_int32_t *gid)
-libnflog.nflog_get_gid.restype = ctypes.c_int32
+libnflog.nflog_get_gid.restype = ctypes.c_int
 libnflog.nflog_get_gid.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.c_int32)]
 
 # int nflog_get_seq (struct nflog_data *nfad, u_int32_t *seq)
-libnflog.nflog_get_seq.restype = ctypes.c_int32
+libnflog.nflog_get_seq.restype = ctypes.c_int
 libnflog.nflog_get_seq.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.c_int32)]
 
 # int nflog_get_seq_global (struct nflog_data *nfad, u_int32_t *seq)
-libnflog.nflog_get_seq_global.restype = ctypes.c_int32
+libnflog.nflog_get_seq_global.restype = ctypes.c_int
 libnflog.nflog_get_seq_global.argtypes = [_LP_nflog_data, ctypes.POINTER(ctypes.c_int32)]
 
 # printing
