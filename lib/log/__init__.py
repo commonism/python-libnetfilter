@@ -3,6 +3,7 @@ import socket
 import logging
 
 from .libnetfilter_log import libnflog, _LP_nflog_handle, _LP_nflog_g_handle,  _LP_nflog_data, nflog_callback
+from libnetfilter.netlink import nlif_handle
 
 log = logging.getLogger('libnetfilter.log')
 log.setLevel(logging.DEBUG)
@@ -115,7 +116,7 @@ class nflog_data(_LP_nflog_data):
 
 	@property
 	def indev(self):
-		return libnflog.nflog_get_indev(self)
+		return nlif_handle.resolve(libnflog.nflog_get_indev(self))
 
 	@property
 	def physindev(self):
@@ -123,7 +124,7 @@ class nflog_data(_LP_nflog_data):
 
 	@property
 	def outdev(self):
-		return libnflog.nflog_get_outdev(self)
+		return nlif_handle.resolve(libnflog.nflog_get_outdev(self))
 
 	@property
 	def physoutdev(self):
