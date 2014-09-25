@@ -1,0 +1,12 @@
+Source: libnetfilter
+Maintainer: Markus Koetter <koetter@rrzn.uni-hannover.de>
+Section: python
+Priority: optional
+Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
+Standards-Version: 3.9.1
+
+Package: python-libnetfilter
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Python libnetfilter_* ctypes
+
