@@ -1,12 +1,20 @@
-Source: libnetfilter
+Source: python-libnetfilter
 Maintainer: Markus Koetter <koetter@rrzn.uni-hannover.de>
 Section: python
 Priority: optional
-Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
+Build-Depends: python-all (>= 2.6.6-3), python3-all-dev (>= 3.2), debhelper (>= 7)
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.2
 Standards-Version: 3.9.1
 
 Package: python-libnetfilter
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}
+Depends: ${misc:Depends}, ${python:Depends}, libnetfilter-conntrack3, libnetfilter-log1, libnetfilter-queue1
 Description: Python libnetfilter_* ctypes
+
+Package: python3-libnetfilter
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, libnetfilter-conntrack3, libnetfilter-log1, libnetfilter-queue1
+Description: Python3 libnetfilter_* ctypes
+
 
