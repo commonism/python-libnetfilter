@@ -1,0 +1,17 @@
+		python-libnetfilter
+
+	INSTALLATION
+Install the required dependencies:
+  * libnetfilter-conntrack
+  * libnetfilter-log
+  * libnetfilter-queue
+
+On debian/ubuntu 
+  * sudo apt-get install libnetfilter-conntrack3 libnetfilter-log1 libnetfilter-queue1
+will do the jobs.
+
+	TODO
+libnetfilter_log ctypes are in a rather good shape.
+libnetfilter_queue and libnetfilter_conntrack need some work.
+Will be done when required.
+
