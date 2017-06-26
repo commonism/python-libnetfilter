@@ -12,7 +12,7 @@ class timeval(ctypes.Structure):
 _LP_timeval = ctypes.POINTER(timeval)
 
 class _nfnl_handle(ctypes.Structure):
-    pass
+	pass
 
 _LP_nfnl_handle = ctypes.POINTER(_nfnl_handle)
 
@@ -30,16 +30,25 @@ libnfnl.nlif_close.restype = None
 libnfnl.nlif_close.argypes = [_LP_nlif_handle]
 
 # int nlif_fd(struct nlif_handle *nlif_handle);
+libnfnl.nlif_fd.restype = ctypes.c_int
+libnfnl.nlif_fd.argypes = [_LP_nlif_handle]
+
 # int nlif_query(struct nlif_handle *nlif_handle);
-libnfnl.nlif_open.restype = ctypes.c_int
-libnfnl.nlif_open.argypes = [_LP_nlif_handle]
+libnfnl.nlif_query.restype = ctypes.c_int
+libnfnl.nlif_query.argypes = [_LP_nlif_handle]
 
 # int nlif_catch(struct nlif_handle *nlif_handle);
+libnfnl.nlif_catch.restype = ctypes.c_int
+libnfnl.nlif_catch.argypes = [_LP_nlif_handle]
+
 # int nlif_index2name(struct nlif_handle *nlif_handle, unsigned int if_index, char *name);
 libnfnl.nlif_index2name.restype = ctypes.c_int
 libnfnl.nlif_index2name.argypes = [_LP_nlif_handle, ctypes.c_uint, ctypes.c_char_p]
 
 # int nlif_get_ifflags(const struct nlif_handle *h, unsigned int index, unsigned int *flags);
+libnfnl.nlif_get_ifflags.restype = ctypes.c_int
+libnfnl.nlif_get_ifflags.argypes = [_LP_nlif_handle, ctypes.c_uint, ctypes.POINTER(ctypes.c_uint)]
+
 
 class nlmsghdr(ctypes.Structure):
 	pass
