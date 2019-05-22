@@ -14,6 +14,7 @@ log.addHandler(handler)
 
 __all__ = ['nflog_handle']
 
+
 class nflog_handle(_LP_nflog_handle):
 	_type_ = _LP_nflog_handle
 
@@ -55,6 +56,7 @@ class nflog_handle(_LP_nflog_handle):
 		data = self._fd.recv(4096)
 		self.handle_packet(data)
 
+
 class nflog_g_handle(_LP_nflog_g_handle):
 	_type_ = _LP_nflog_g_handle
 	def set_mode(self, mode, len):
@@ -85,6 +87,7 @@ class nflog_g_handle(_LP_nflog_g_handle):
 			return 0
 		self._cb = nflog_callback(_cb)
 		return libnflog.nflog_callback_register(self, self._cb, data)
+
 
 class nflog_data(_LP_nflog_data):
 	_type_ = _LP_nflog_data
@@ -169,6 +172,7 @@ class nflog_data(_LP_nflog_data):
 
 	def __repr__(self):
 		return "<nflog_data {x} {i.prefix}/>".format(x=id(self), i = self)
+
 
 def main():
 	import select

@@ -5,16 +5,19 @@ import socket
 
 libnfnl = ctypes.CDLL(ctypes.util.find_library("nfnetlink"))
 
+
 class timeval(ctypes.Structure):
 	_fields_ = [('tv_sec', ctypes.c_long),
 				('tv_usec', ctypes.c_long)]
 
 _LP_timeval = ctypes.POINTER(timeval)
 
+
 class _nfnl_handle(ctypes.Structure):
 	pass
 
 _LP_nfnl_handle = ctypes.POINTER(_nfnl_handle)
+
 
 class _nlif_handle(ctypes.Structure):
 	pass
@@ -112,6 +115,7 @@ class iphdr(ctypes.Structure):
 	def protocol(self):
 		return self.ip_p
 
+
 class tcphdr(ctypes.Structure):
 	_pack_ = 1
 	_fields_ = [
@@ -163,6 +167,7 @@ class tcphdr(ctypes.Structure):
 	def urg(self):
 		return self.th_flags & 0x20
 
+
 class udphdr(ctypes.Structure):
 	_pack_ = 1
 	_fields_ = [
@@ -183,6 +188,7 @@ class udphdr(ctypes.Structure):
 	@property
 	def length(self):
 		return socket.ntohs(self.uh_ulen)
+
 
 class icmphdr(ctypes.Structure):
 	_pack_ = 1

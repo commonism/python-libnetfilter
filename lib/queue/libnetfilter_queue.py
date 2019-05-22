@@ -192,6 +192,7 @@ NF_MAX_VERDICT = NF_STOP
 
 NFQNL_COPY_NONE, NFQNL_COPY_META, NFQNL_COPY_PACKET = 0, 1, 2
 
+
 def main():
 	import socket
 	import signal

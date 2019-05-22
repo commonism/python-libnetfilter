@@ -51,7 +51,6 @@ class nfct_handle(_LP_nfct_handle):
 		return socket.fromfd(libnfct.nfct_fd(self), socket.AF_UNSPEC, socket.SOCK_STREAM)
 
 
-
 class nf_conntrack(_LP_nf_conntrack):
 	_type_ = _LP_nf_conntrack._type_
 
@@ -129,7 +128,7 @@ class nf_conntrack(_LP_nf_conntrack):
 		elif self.L4PROTO == socket.IPPROTO_ICMP:
 			s += "icmp "
 		s += "{}".format(self.STATUS)
-		s += ">"		
+		s += ">"
 		return s
 
 	def update(self, ct):
