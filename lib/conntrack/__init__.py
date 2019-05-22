@@ -1,6 +1,7 @@
 import ctypes
 import socket
-from .libnetfilter_conntrack import libncft, _LP_nfct_handle, _LP_nfct_conntrack
+from .libnetfilter_conntrack import libnfct, _LP_nfct_handle, _LP_nf_conntrack, NFCT_CALLBACK, ATTR, CB, TCP_CONNTRACK, NFCT_STATUS
+
 
 class nfct_handle(_LP_nfct_handle):
 	_type_ = _LP_nfct_handle._type_
@@ -63,11 +64,11 @@ class nf_conntrack(_LP_nf_conntrack):
 
 	@property
 	def IPV4_SRC(self):
-		return socket.inet_ntop(socket.AF_INET, struct.pack("<L", libnfct.nfct_get_attr_u32(self, ATTR.IPV4_SRC)))
+		return socket.inet_ntop(socket.AF_INET, ctypes.struct.pack("<L", libnfct.nfct_get_attr_u32(self, ATTR.IPV4_SRC)))
 
-	@property 
+	@property
 	def IPV4_DST(self):
-		return socket.inet_ntop(socket.AF_INET, struct.pack("<L", libnfct.nfct_get_attr_u32(self, ATTR.IPV4_DST)))
+		return socket.inet_ntop(socket.AF_INET, ctypes.struct.pack("<L", libnfct.nfct_get_attr_u32(self, ATTR.IPV4_DST)))
 
 	@property
 	def PORT_SRC(self):
