@@ -1,5 +1,6 @@
 import ctypes
 import socket
+import sys
 
 from .libnfnetlink import _LP_nfnl_handle, _LP_nlif_handle, libnfnl, iphdr, icmphdr, tcphdr, udphdr
 
@@ -39,8 +40,10 @@ class nlif_handle(_LP_nlif_handle):
 		r = libnfnl.nlif_index2name(self, index, buf)
 		if r < 0:
 			return None
-		return str(buf.value)
-
+		if sys.version_info.major == 3:
+			return buf.value.decode('ascii')
+		else:
+			return str(buf.value)
 
 def nf_log(pkt, iif, oif):
 	# log_packet_common
